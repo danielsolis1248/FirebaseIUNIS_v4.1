@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "153795648712",
+    "firebase_url": "https://iunis-9semestre-default-rtdb.firebaseio.com",
+    "project_id": "iunis-9semestre",
+    "storage_bucket": "iunis-9semestre.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153795648712:android:bb71420c731ff245c899fd",
+        "android_client_info": {
+          "package_name": "com.example.firebaseiunis_9semestre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153795648712-cnojnn8o7vv10uf3o2crisu49saemp6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLnNaC_pcvaCtXLLmIlvOtFRCXOCtvSZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153795648712-cnojnn8o7vv10uf3o2crisu49saemp6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153795648712:android:f51890995c462f09c899fd",
+        "android_client_info": {
+          "package_name": "com.example.firebaseiunis_v41"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153795648712-cnojnn8o7vv10uf3o2crisu49saemp6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLnNaC_pcvaCtXLLmIlvOtFRCXOCtvSZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153795648712-cnojnn8o7vv10uf3o2crisu49saemp6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
