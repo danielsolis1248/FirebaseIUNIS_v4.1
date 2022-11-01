@@ -8,12 +8,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/imgProduct"
-            android:layout_width="100dp"
+            android:layout_width="140dp"
             android:layout_height="0dp"
             android:background="@color/cardview_dark_background"
-            android:src="@drawable/logo_iunis_PNG"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintDimensionRatio="1:1"/>
@@ -26,7 +26,31 @@
             app:layout_constraintEnd_toEndOf="@+id/imgProduct"
             app:layout_constraintBottom_toBottomOf="@+id/imgProduct"
             android:textColor="@color/white"
-            android:text="PRUEBA"/>
+            android:text="x54"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgProduct"
+            android:textColor="@color/black"
+            android:text="Nombre del producto"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/black"
+            android:text="$150.00"/>
+
         
     </androidx.constraintlayout.widget.ConstraintLayout>
 
