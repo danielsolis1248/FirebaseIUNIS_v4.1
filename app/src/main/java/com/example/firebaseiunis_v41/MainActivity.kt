@@ -5,19 +5,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.GridLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.firebaseiunis_v41.OnProductListener
+import com.example.firebaseiunis_v41.Product
+import com.example.firebaseiunis_v41.ProductAdapter
 import com.example.firebaseiunis_v41.R
 import com.example.firebaseiunis_v41.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),OnProductListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var authStateListener: FirebaseAuth.AuthStateListener
+    private lateinit var adapter: ProductAdapter
 
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
@@ -42,8 +48,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         configuAuth()
+        configRecyclerView()
+    }
+
+    private fun configRecyclerView() {
+        adapter = ProductAdapter(mutableListOf(),this)
+        binding.recyclerView.apply {
+            layoutManager = GridLayoutManager(this@MainActivity,3,GridLayoutManager.HORIZONTAL,false)
+
+        }
+        (1..20).forEach{
+            val product = Product(it.toString(),"Producto $it","Este producto es el $it", "",it,it*1.1)
+            adapter.add(product)
+        }
     }
 
     private fun configuAuth() {
@@ -54,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.title = auth.currentUser?.displayName
                 binding.tvInit.visibility = View.VISIBLE
                 binding.llProgress.visibility = View.VISIBLE
+                binding.nsvProducts.visibility = View.VISIBLE
 
             } else {
                 val providers = arrayListOf(
@@ -95,6 +114,7 @@ class MainActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             binding.tvInit.visibility = View.GONE
                             binding.llProgress.visibility = View.GONE
+                            binding.nsvProducts.visibility = View.GONE
                         } else {
                             Toast.makeText(this, "No se pudo terminar", Toast.LENGTH_SHORT).show()
                         }
@@ -102,5 +122,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick(product: Product) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLongClick(product: Product) {
+        TODO("Not yet implemented")
     }
 }

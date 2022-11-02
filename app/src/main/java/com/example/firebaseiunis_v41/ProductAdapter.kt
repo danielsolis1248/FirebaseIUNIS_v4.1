@@ -22,10 +22,21 @@ class ProductAdapter (private val productList:MutableList<Product>, private val 
     }
 
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-        TODO("No yet implemented")
+        val product = productList[position]
+        holder.setListener(product)
+        holder.binding.tvName.text = product.name
+        holder.binding.tvPrice.text = product.precio.toString()
+        holder.binding.tvQuantity.text = product.quantity.toString()
     }
 
     override fun getItemCount(): Int = productList.size
+
+    fun add(product: Product){
+        if(!productList.contains(product)){
+            productList.add(product)
+            notifyItemInserted(productList.size-1)
+        }
+    }
 
     inner class ViewHolder(view:View):RecyclerView.ViewHolder(view){
         val binding = ItemProductBinding.bind(view)
