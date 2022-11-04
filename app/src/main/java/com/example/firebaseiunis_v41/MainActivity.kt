@@ -17,6 +17,7 @@ import com.example.firebaseiunis_v41.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity(),OnProductListener {
 
@@ -131,4 +132,20 @@ class MainActivity : AppCompatActivity(),OnProductListener {
     override fun onLongClick(product: Product) {
         TODO("Not yet implemented")
     }
+
+    private fun configFirestore(){
+        val db = FirebaseFirestore.getInstance()
+        db.collection("products")
+            .get()
+            .addOnSuccessListener { snapshots ->
+                for (document in snapshots) {
+                    val product = document.toObject(Product::class.java)
+                    adapter.add(product)
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this,"Error al consultar datos", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 }

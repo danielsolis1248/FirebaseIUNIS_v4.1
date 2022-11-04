@@ -2,8 +2,8 @@ package com.example.firebaseiunis_v41
 
 data class Product (var id:String?,
                     var name:String?,
-                    var description:String?,
-                    var imgUrl:String?,
+                    var description:String? = null,
+                    var imgUrl:String? = null,
                     var quantity: Int=0,
                     var precio:Double=0.0
 
