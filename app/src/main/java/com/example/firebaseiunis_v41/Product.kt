@@ -1,11 +1,12 @@
 package com.example.firebaseiunis_v41
 
-data class Product (var id:String?,
-                    var name:String?,
-                    var description:String? = null,
-                    var imgUrl:String? = null,
-                    var quantity: Int=0,
-                    var precio:Double=0.0
+data class Product(
+    var id:String?,
+    var name:String?,
+    var description:String? = null,
+    var imgUrl:String? = null,
+    var quantity: String? = null ,
+    var precio:Double=0.0
 
 ) {
     override fun equals(other: Any?): Boolean {
@@ -25,12 +26,6 @@ data class Product (var id:String?,
     }
 
     override fun hashCode(): Int {
-        var result = id?.hashCode() ?: 0
-        result = 31 * result + (name?.hashCode() ?: 0)
-        result = 31 * result + (description?.hashCode() ?: 0)
-        result = 31 * result + (imgUrl?.hashCode() ?: 0)
-        result = 31 * result + quantity
-        result = 31 * result + precio.hashCode()
-        return result
+        return id?.hashCode() ?: 0
     }
 }
