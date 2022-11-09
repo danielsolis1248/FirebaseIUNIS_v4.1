@@ -38,6 +38,14 @@ class ProductAdapter (private val productList:MutableList<Product>, private val 
         }
     }
 
+    fun update(product: Product) {
+        TODO("Not yet implemented")
+    }
+
+    fun delete(product: Product) {
+        TODO("Not yet implemented")
+    }
+
     inner class ViewHolder(view:View):RecyclerView.ViewHolder(view){
         val binding = ItemProductBinding.bind(view)
 
