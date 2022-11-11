@@ -8,23 +8,24 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.firebaseiunis_v41.OnProductListener
-import com.example.firebaseiunis_v41.Product
-import com.example.firebaseiunis_v41.ProductAdapter
-import com.example.firebaseiunis_v41.R
+import com.example.firebaseiunis_v41.*
 import com.example.firebaseiunis_v41.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
-class MainActivity : AppCompatActivity(),OnProductListener {
+class MainActivity : AppCompatActivity(),OnProductListener, MainAux {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var authStateListener: FirebaseAuth.AuthStateListener
     private lateinit var adapter: ProductAdapter
+
+    private lateinit var firestoreListener: ListenerRegistration
+    private var productSelected:Product? = null
 
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
@@ -133,13 +134,20 @@ class MainActivity : AppCompatActivity(),OnProductListener {
 
     override fun onLongClick(product: Product) {
         val db = FirebaseFirestore.getInstance()
-        val productRef = db.collection("products")
+        val productRef = db.collection(KeysCommons.COLLECTION_DB_PRODUCTS)
         product.id?.let { id->
             productRef.document(id)
                 .delete()
-
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error al eliminar", Toast.LENGTH_SHORT).show()
+                }
         }
+    }
 
+    private fun configButtons(){
+        binding.efab.setOnClickListener {
+            AddDialogFragment().show(supportFragmentManager, AddDialogFragment::class.java.simpleName)
+        }
     }
 
     private fun configFirestore(){
@@ -178,5 +186,7 @@ class MainActivity : AppCompatActivity(),OnProductListener {
             }
         }
     }
+
+    override fun getProductSelected(): Product? = productSelected
 
 }
